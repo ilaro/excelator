@@ -1,0 +1,73 @@
+= Excelator
+
+Rails gem for generating a Excel readable XML file.
+
+== Install
+
+  gem install excelator
+
+
+== Usage
+
+Copie lo que sigue a su programa
+En la primera instrucción del programa que va a utilizar esta yema colocar 
+        
+      require 'excelator'  
+
+Crea el libro excel de salida "libro.xml"
+
+      f=Excelator.new("libro")
+
+Inicia el libro con los encabezados de excel y los estilos a utilizar
+
+      f.iniciar
+    
+Luego se definen las planillas del libro:
+
+Inicia una planilla en el libro (hay que hacerlo para cada planilla
+
+      f.iniciar_planilla("planilla")
+
+Hay que hacer uno para cada columna con el ancho 9999 medido en caracteres, todas se definene una debajo de la otra 
+
+      f.columna(ancho)  
+
+Luego se definen las lineas
+
+      f.iniciar_linea
+
+Hay que enviar las celdas en el orden que aparecen en la linea.
+Tipos: Encabezado, GranTitulo, Titulo, Alfa, Num, Fecha, Total
+(Si en el contenido aparece un signo igual lo considera una formula)
+ 
+      f.celda("tipo","contenido")           
+            
+      f.terminar_linea
+
+Para terminar
+      f.terminar_planilla   #Termina la planilla en curso del Libro
+      f.terminar
+
+
+== License
+
+Copyright (c) 2012 Ilaro
+ 
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+ 
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+ 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
