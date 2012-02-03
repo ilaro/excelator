@@ -1,8 +1,8 @@
 module Excelator
 
-# excelator.rb   -------   Ver Summer 2011
+# excelator_yema_v1-1.rb   -------   Ver Summer 2011 v1-1
 #
-# -------- Modo de Uso (Copie lo que sigue a su programa)
+# -------- Modo de Uso (Copie lo que sigue en su programa)
 # En la primera instrucción del programa que va a utilizar esta yema colocar "require ./excelator_yema.rb"  
 # f=Excelator.new("libro")      #Crea el libro excel de salida "libro.xml"
 # f.iniciar         #Inicia el libro con los encabezados de excel y los estilos a utilizar
@@ -52,6 +52,7 @@ class Excelator < File
     self.puts "<ss:Style ss:ID=\"Fecha\">"
     self.puts "<ss:Font ss:Size=\"10\"/>"
     self.puts "<ss:Alignment ss:Horizontal=\"Center\"/>"
+    self.puts "<ss:NumberFormat ss:Format=\"Short Date\"/>"
     self.puts "</ss:Style>"
     self.puts "<ss:Style ss:ID=\"Total\">"
     self.puts "<ss:Font ss:Bold=\"1\" ss:Size=\"10\"/>"   
@@ -136,16 +137,19 @@ class Excelator < File
     self.write " ss:Formula=\"#{contenido}\"" if formula
     self.write ">"
     self.write "<ss:Data " 
-    self.write "ss:Type=\"String\">#{contenido}" if (tipo!="Num" and tipo!="Cifra" and tipo!="Total" and !formula)
+    self.write "ss:Type=\"String\">#{contenido}" if (tipo!="Num" and tipo!="Cifra" and tipo!="Total" and tipo!="Fecha" and !formula)
     self.write "ss:Type=\"Number\">#{contenido}" if (tipo=="Num" or tipo=="Cifra")
     self.write "ss:Type=\"String\">#{contenido}" if (formula or tipo=="Total")
+    self.write "ss:Type=\"DateTime\">#{contenido}" if (tipo=="Fecha")
     self.write "</ss:Data>"
     self.puts "</ss:Cell>"
   end
   
+  def Frizado(linea)
+  end
+
 #Class end
 end
-
 
 #Module end
 end
