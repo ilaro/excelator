@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Excelator : Generate an Excel readable XML file" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Excelator</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ilaro/excelator">View on GitHub</a>
+
+          <h1 id="project_title">Excelator</h1>
+          <h2 id="project_tagline">Generate an Excel readable XML file</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/ilaro/excelator/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/ilaro/excelator/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>This gem</h3>
+
+<p>Generates an XML file, that can be interpreted as XLS when you use it with MS Excel.</p>
+
+<h3>Install</h3>
+
+<pre><code>  $ gem install excelator
+</code></pre>
+
+<h3>Usage</h3>
+
+<p>Copie lo que sigue a su programa:
+En la primera instrucción del programa que va a utilizar esta yema colocar </p>
+
+<pre><code>  require 'excelator'  
+</code></pre>
+
+<p>Crea el libro excel de salida "libro.xml"</p>
+
+<pre><code>  f=Excelator.new("libro")
+</code></pre>
+
+<p>Inicia el libro con los encabezados de excel y los estilos a utilizar</p>
+
+<pre><code>  f.iniciar
+</code></pre>
+
+<p>Luego se definen las planillas del libro:</p>
+
+<p>Inicia una planilla en el libro (hay que hacerlo para cada planilla</p>
+
+<pre><code>  f.iniciar_planilla("planilla")
+</code></pre>
+
+<p>Hay que hacer uno para cada columna con el ancho 9999 medido en caracteres, todas se definene una debajo de la otra </p>
+
+<pre><code>  f.columna(ancho)  
+</code></pre>
+
+<p>Luego se definen las lineas</p>
+
+<pre><code>  f.iniciar_linea
+</code></pre>
+
+<p>Hay que enviar las celdas en el orden que aparecen en la linea.
+Tipos: Encabezado, GranTitulo, Titulo, Alfa, Num, Fecha, Total
+(Si en el contenido aparece un signo igual lo considera una formula)</p>
+
+<pre><code>  f.celda("tipo","contenido")           
+
+  f.terminar_linea
+</code></pre>
+
+<p>Para terminar
+      f.terminar_planilla   #Termina la planilla en curso del Libro
+      f.terminar</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Excelator maintained by <a href="https://github.com/ilaro">ilaro</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
